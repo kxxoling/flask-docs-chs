@@ -90,7 +90,7 @@
 键值对参数将会被转化为 HTML 属性。所以在这个例子里，你可以调用
 ``render_field(form.username,class="username")`` 将一个类添加到这个
 输入框元素中。注意： WTForms 返回标准 Python unicode 字符串，所以我们
-使用 `|safe` 告诉 Jinjan2 这些数据已经是经过 HTML 过滤处理的了。
+使用 `|safe` 告诉 Jinja2 这些数据已经是经过 HTML 过滤处理的了。
 
 以下是 `register.html` 模板，它对应于上面我们使用过的函数，同时也利用
 了 `_formhelpers.html` 模板:
