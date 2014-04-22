@@ -24,7 +24,7 @@
 重命名为 `__init__.py` （确保先删除了其中所有的 `.pyc` 文件，否则可能导致
 错误的结果）
 
-您最后得到的东西应该像下面这样::
+最后得到的东西应该像下面这样::
 
     /yourapplication
         /yourapplication
@@ -37,10 +37,10 @@
                 login.html
                 ...
 
-如何在此种方式下运行您的应用？原来的 ``python yourapplication/__init__.py`` 
-不能再工作了。这是由于 Python 不希望在包中的模块成为初始运行的文件。但这
-不是一个大问题，仅仅添加一个名叫 `runserver.py` 的新文件，把这个文件放在
-`yourapplication` 文件夹里，并添加如下功能::
+如何在这种方式下运行你的应用？原来的 ``python yourapplication/__init__.py`` 
+不再工作了。这是由于 Python 不希望在包中的模块成为初始运行的文件。但这
+不是一个大问题，只需要在 `yourapplication` 文件夹中添加一个名叫 `runserver.py` 
+的新文件，并添加如下功能::
 
     from yourapplication import app
     app.run(debug=True)

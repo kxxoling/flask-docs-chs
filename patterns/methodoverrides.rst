@@ -1,9 +1,8 @@
-添加 HTTP Method Overrides
+添加 HTTP 方法重载
 ============================
 
-某些 HTTP 代理不支持任意的 HTTP 方法或更新的 HTTP 方法（比如 PATCH）。
-这种情况下，通过另一种完全违背协议的 HTTP 方法来“代理” HTTP 方法是可行
-的。
+某些 HTTP 代理不支持某些 HTTP 方法或更新的 HTTP 方法（比如 PATCH）。
+这种情况下，可以通过另一种完全违背协议的 HTTP 方法来“代理” HTTP 方法。
 
 这个方法使客户端发出 HTTP POST 请求并设置 ``X-HTTP-Method-Override``
 标头的值为想要的 HTTP 方法（比如 ``PATCH`` ）。
