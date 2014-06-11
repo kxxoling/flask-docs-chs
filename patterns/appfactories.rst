@@ -49,7 +49,7 @@
 工厂 & 扩展
 ------------------
 
-建议你自己根据应用写扩展和应用工厂函数，这样扩展对象不会和应用耦合地太过紧密。
+建议自己实现应用扩展和工厂函数，这样扩展对象不会和应用耦合地太过紧密。
 
 以 `Flask-SQLAlchemy <http://pythonhosted.org/Flask-SQLAlchemy/>`_ 为例，
 你不应该这样写：
@@ -73,14 +73,13 @@
         from yourapplication.model import db
         db.init_app(app)
 
-Using this design pattern, no application-specific state is stored on the
-extension object, so one extension object can be used for multiple apps. 
-For more information about the design of extensions refer to :doc:`/extensiondev`.
+借助本设计模式，可以将应用相关的状态剥离到扩展中，这样扩展就可以应用于多个应用。
+至于如何设计扩展请参阅 :doc:`/extensiondev`。
 
 使用应用
 -------
 
-因此，使用这样地应用首先需要创建应用对象，这是一个 `run.py` 文件示例::
+因此，使用应用前首先需要创建应用对象，这是一个 `run.py` 示例文件::
 
     from yourapplication import create_app
     app = create_app('/path/to/config.cfg')
@@ -89,10 +88,9 @@ For more information about the design of extensions refer to :doc:`/extensiondev
 改进工厂函数
 -----------
 
-前文所提供的工厂函数并不够智能，还可以继续改进，下面是些简单实用地修改建议：
+前文所提供的工厂函数并不够智能，还可以继续改进，下面是些简单实用的修改建议：
 
-1.  使得在单元测试中传入配置值成为可行，以使您不必在文件系统中
-    创建多个配置文件。
-2.  在程序初始时从蓝图中调用一个函数，这样您就有机会修改应用的参数属性了
-    (就像在在请求处理器前后的调用钩子等)
-3.  如果必要的话，在应用正在被创建时添加 WSGI 中间件。
+1. 允许在单元测试中传入配置，这样可以避免在文件系统中创建多个配置文件。
+2. 应用初始化时从 blueprint 中调用一个函数，这样就可以修改应用属性。
+   （类似于请求前/后处理器中的 hook）
+3. 如果有必要，在创建应用时引入 WSGI 中间件。
