@@ -7,15 +7,16 @@ Flask 中的视图都是一个函数装饰器，用来向函数中注入额外�
 例如，你有一个仅供登录后的用户访问的视图，如果未登录的用户试图访问，则把他们
 转接到登录界面。这个例子很好地说明了装饰器的用武之地。
 
+
 过滤未登录用户的装饰器
--------------------
+----------------------
 
 现在让我们实现一个这样的装饰器。装饰器是指返回函数的函数，它其实非常简单。
 你只需要记住，实现一个这样的东西，会更新函数的 `__name__` 、 `__module__`
 以及其它一些属性，这点经常被遗忘。但是并不需要你亲自动手，我们
 有一个专门处理这些的用作装饰器的函数(:func:`functools.wraps` )。
 
-在这个例子中，用户登陆页面的名字是 ``'login'``，当前已登录用户被保存在 `g.user` 当中，
+在这个例子中，用户登陆页面的名字是 ``'login'`` ，当前已登录用户被保存在 `g.user` 当中，
 如果没有用户登录， `g.user` 会是 `None`::
 
     from functools import wraps
@@ -36,6 +37,7 @@ Flask 中的视图都是一个函数装饰器，用来向函数中注入额外�
     @login_required
     def secret_page():
         pass
+
 
 缓存装饰器
 -----------------
@@ -130,7 +132,7 @@ TurboGears 的家伙们前一段时间发明了一种新的常用范式，那就
 
 
 终端装饰器
-------------------
+----------
 
 如果你希望使用 werkzeug 的路由系统以获得更高的灵活性，需要将终点（Endpoint）
 像 :class:`~werkzeug.routing.Rule` 中定义的那样与视图函数映射起来，配合这个装饰器
@@ -139,9 +141,9 @@ TurboGears 的家伙们前一段时间发明了一种新的常用范式，那就
     from flask import Flask
     from werkzeug.routing import Rule
 
-    app = Flask(__name__)                                                          
-    app.url_map.add(Rule('/', endpoint='index'))                                   
+    app = Flask(__name__)
+    app.url_map.add(Rule('/', endpoint='index'))
 
-    @app.endpoint('index')                                                         
-    def my_index():                                                                
-        return "Hello world"     
+    @app.endpoint('index')
+    def my_index():
+        return "Hello world"
